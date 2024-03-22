@@ -1,0 +1,60 @@
+<header class="container-fluid" style="width: 82%;">
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://rukminim2.flixcart.com/fk-p-flap/1600/270/image/65d241e0e197d83b.png?q=20"
+                    class="d-block w-100" height="250px" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="https://rukminim2.flixcart.com/fk-p-flap/1600/270/image/cd7772dcad0158e8.jpg?q=20"
+                    class="d-block w-100" height="250px" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="https://rukminim2.flixcart.com/fk-p-flap/1600/270/image/65d241e0e197d83b.png?q=20"
+                    class="d-block w-100" height="250px" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="https://rukminim2.flixcart.com/fk-p-flap/1600/270/image/cd7772dcad0158e8.jpg?q=20"
+                    class="d-block w-100" height="250px" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev " type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon " aria-hidden="true"></span>
+            <span class="visually-hidden ">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</header>
+
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div class="col mb-5 " *ngFor="let i of products">
+                <div class="card h-100 shadow bg-transparent p-2 rounded">
+                    <div class="text-end border-dark p-3 pt-4" type="button"><span style="border: 1px solid rgb(255, 96, 44);border-radius: 50%;padding: 12px 8px 9px 8px; "><i class="fa-solid fa-heart fa-xl"  style="color: rgb(255, 96, 44);"></i></span></div>
+                    <img class="card-img-top" routerLink="/view/{{i.id}}" style="cursor: pointer;mix-blend-mode: multiply;aspect-ratio: 3/3;" src="{{i.image}}" alt="..." />
+               
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                        
+                            <h5 class="fw-bolder">{{i.title}}</h5>
+                      
+                            {{i.price|currency:'INR'}}
+                        </div>
+                    </div>
+                  
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent d-flex justify-content-center w-100">
+                        <!-- <div class="text-center"><button  class="btn btn-outline-dark flex-shrink-0 me-2" type="button"><i class="fa-solid fa-heart-circle-plus pe-2"></i>Wishlist</button></div> -->
+                        <div class="text-center "><button  class="btn hover border-dark flex-shrink-0" type="button" style="border-radius: 50px;padding: 9px 20px;"><i class="fa-solid fa-cart-plus pe-2"></i>Add to cart</button></div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
