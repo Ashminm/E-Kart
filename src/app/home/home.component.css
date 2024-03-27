@@ -5,13 +5,26 @@
 }
 
 .hover{
-    background-color: #000000d4;
-    color: #FFF;
+  background-color: transparent;
+  color: #000;
+  transition: 700ms;
 }
 .hover:hover{
-    background-color: transparent;
-    color: #000;
+  background-color: #000000d4;
+  color: #FFF;
 }
+/* image hover */
+.hover_image {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+.hover_image:hover {
+	-webkit-transform: scale(1.3);
+	transform: scale(1.3);
+}
+
 
 @keyframes clickAnimation {
     0% {

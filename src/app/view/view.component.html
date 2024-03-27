@@ -1,21 +1,21 @@
 <section class="py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="row gx-4 gx-lg-5 align-items-center">
-            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0 w-75" style="mix-blend-mode: multiply;" src={{product.image}} alt="..." /></div>
+            <div class="col-md-6 text-center" style="padding: 120px;background-color: rgb(212, 213, 214); "><img class="card-img-top mb-5 mb-md-0 w-75 hover_image" style="mix-blend-mode: multiply;" src={{product.image}} alt="..." /></div>
             <div class="col-md-6">
                 <div class="small mb-1">ID:{{product.id}}</div>
-                <h1 class="display-5 fw-bolder">{{product.title}}</h1>
+                <p class="fw-bolder display-6 text-uppercase">{{product.title}}</p>
                 <div class="fs-5 mb-5">
                     <span class="text-decoration-line-through pe-2">{{product.price | currency:'INR'}}</span>
                     <span>{{product.price | currency:'INR'}}</span>
                 </div>
-                <p class="lead">{{product.description}}</p>
-                <div class="d-flex">
-                    <button class="btn btn-outline-dark flex-shrink-0 me-3" type="button">
+                <p class="lead pt-5">{{product.description}}</p>
+                <div class="d-flex mt-5" style="width: 61.6%;border: 1px solid rgb(255, 96, 44);">
+                    <button class="btn flex-shrink-0  btn-outline-dark border-0 text-uppercase" style="padding: 15px 50px ;" type="button">
                         <i class="bi-cart-fill me-1"></i>
                         Wishlist
                     </button>
-                    <button class="btn flex-shrink-0 hover" type="button">
+                    <button class="btn flex-shrink-0 hover text-uppercase" style="padding: 15px 50px ;" type="button">
                         <i class="bi-cart-fill me-1"></i>
                         Add to cart
                     </button>

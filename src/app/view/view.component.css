@@ -1,9 +1,20 @@
 .hover{
     background-color: rgb(255, 96, 44);
     color: #FFF;
-    border: 1px solid rgb(255, 96, 44);
+    border:none;
 }
 .hover:hover{
-    background-color: transparent;
-    color:  rgb(255, 96, 44);
+    background-color: rgba(255, 97, 44, 0.678);
+    color: #FFF;
+}
+/* image hover */
+.hover_image {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+.hover_image:hover {
+	-webkit-transform: scale(0.3);
+	transform: scale(1.1);
 }
