@@ -23,6 +23,7 @@ getFormdata(){
     next:(res:any)=>{
       sessionStorage.setItem('existingUser',JSON.stringify(res.existingUser))
       sessionStorage.setItem('Token',res.token) 
+      this.api.getWishlistCountApi()
       this.toaster.success("Login Successfully!")    
       this.route.navigateByUrl('/')
     },

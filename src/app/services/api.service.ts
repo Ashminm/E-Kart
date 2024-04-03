@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,9 +8,16 @@ import { Injectable } from '@angular/core';
 export class ApiService {
 
   SERVER_URL="http://localhost:3000"
-  constructor(private http:HttpClient) { }
+  wishListCount=new BehaviorSubject(0)
+  cartListCount=new BehaviorSubject(0)
 
-
+  constructor(private http:HttpClient) {
+    if(sessionStorage.getItem("Token")){
+      this.getWishlistCountApi()
+      this.getCartCountApi()
+    }
+   }
+   
   getAllProducts(){
     return this.http.get(`${this.SERVER_URL}/all-products`)
   }
@@ -23,7 +31,7 @@ export class ApiService {
     return this.http.post(`${this.SERVER_URL}/login`,data)
   }
 
-
+// --------------------------------------
   appendTokenToHeader(){
     const token=sessionStorage.getItem('Token')
     let headers=new HttpHeaders()
@@ -39,6 +47,32 @@ export class ApiService {
 
   getWishListApi(){
     return this.http.get(`${this.SERVER_URL}/get-wish`,this.appendTokenToHeader())
+  }
+
+  removeWishListItem(id:any){
+    return this.http.delete(`${this.SERVER_URL}/delete-wishItem/${id}`,this.appendTokenToHeader())    
+  }
+
+  getWishlistCountApi(){
+    this.http.get(`${this.SERVER_URL}/get-wish`,this.appendTokenToHeader()).subscribe((res:any)=>{
+      this.wishListCount.next(res.length)
+      
+    })
+  }
+  addToCartApi(product:any){
+    return this.http.post(`${this.SERVER_URL}/add-toCart`,product,this.appendTokenToHeader())
+  }
+  getCartApi(){
+    return this.http.get(`${this.SERVER_URL}/view-cartList`,this.appendTokenToHeader())
+  }
+  getCartCountApi(){
+    this.http.get(`${this.SERVER_URL}/view-cartList`,this.appendTokenToHeader()).subscribe((res:any)=>{
+      this.cartListCount.next(res.length)
+      
+    })
+  }
+  deleteCartItemApi(id:any){
+    return this.http.delete(`${this.SERVER_URL}/delete-cart-Item/${id}`,this.appendTokenToHeader())    
   }
 
 }

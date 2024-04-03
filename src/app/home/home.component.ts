@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
@@ -11,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class HomeComponent implements OnInit {
   products:any[]=[]
 
-  constructor(private api:ApiService,private toaster:ToastrService){}
+  constructor(private api:ApiService,private toaster:ToastrService,private route:Router){}
 
   ngOnInit() {
     this.getData()
@@ -30,18 +32,47 @@ export class HomeComponent implements OnInit {
 
   addWish(data:any){
     if(sessionStorage.getItem('Token')){
-      console.log(data);
+      // console.log(data);
       this.api.addWishListApi(data).subscribe({
         next:(res:any)=>{
+          console.log(res);
+          this.api.getWishlistCountApi()
           this.toaster.success("Item added to Wishlist") 
         },
         error:(err:any)=>{
+          console.log("Already in wishlist");
           this.toaster.info(err.error)
         }
       }) 
     }
     else{
+      
       this.toaster.warning("Login First")
+      this.route.navigateByUrl('/log')
+    }
+  }
+
+  addCart(data:any){
+    if(sessionStorage.getItem("Token")){
+      const {id,title,image,price}=data
+      const product={id,title,image,price,quantity:1}
+      this.api.addToCartApi(product).subscribe({
+        next:(res:any)=>{
+          console.log(res);
+          this.api.getCartCountApi()
+          this.toaster.success("Item added to cart")
+          
+        },
+        error:(err:any)=>{
+          this.toaster.error(err.error)
+        }
+      })
+    }
+    else{
+      console.log("Login first");
+      this.toaster.warning("Login first!!")
+      this.route.navigateByUrl('/log')
+
     }
   }
 

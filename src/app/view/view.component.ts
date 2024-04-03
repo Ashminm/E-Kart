@@ -14,7 +14,7 @@ export class ViewComponent implements OnInit{
 
   constructor(private aroute:ActivatedRoute,private api:ApiService){
     this.aroute.params.subscribe((res:any)=>{
-      console.log(res.id);
+      // console.log(res.id);
       this.pid=res.id
       
     })
@@ -25,7 +25,7 @@ ngOnInit() {
 getData(){
   this.api.getProduct(this.pid).subscribe((res:any)=>{
     this.product=res
-    console.log(this.product);
+    // console.log(this.product);
     
   })
 }
