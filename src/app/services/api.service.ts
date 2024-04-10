@@ -74,5 +74,14 @@ export class ApiService {
   deleteCartItemApi(id:any){
     return this.http.delete(`${this.SERVER_URL}/delete-cart-Item/${id}`,this.appendTokenToHeader())    
   }
+  incQuantityItemApi(id:any){
+    return this.http.get(`${this.SERVER_URL}/incQuantity-cart-Item/${id}`,this.appendTokenToHeader())    
+  }
+  decQuantityItemApi(id:any){
+    return this.http.get(`${this.SERVER_URL}/decQuantity-cart-Item/${id}`,this.appendTokenToHeader())    
+  }
+  emptycartApi(){
+    return this.http.delete(`${this.SERVER_URL}/empty-cart`,this.appendTokenToHeader())    
+  }
 
 }

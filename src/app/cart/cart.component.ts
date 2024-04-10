@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 export class CartComponent implements OnInit {
 
   cartProducts:any[]=[]
+  totalAmount:any=0
   constructor(private api:ApiService,private toastr:ToastrService){}
 
   ngOnInit() {
@@ -19,13 +20,14 @@ export class CartComponent implements OnInit {
   getCart(){
     this.api.getCartApi().subscribe({
       next:(res:any)=>{
-        console.log(res);
+        // console.log(res);
         this.cartProducts=res
+        this.getTotalAmount()
         
       },
       error:(err:any)=>{
-        console.log(err);
-        
+        // console.log(err);
+        this.toastr.error(err)
       }
     })
   }
@@ -36,6 +38,7 @@ export class CartComponent implements OnInit {
         console.log(res);
         this.toastr.success("cart item deleted!")
         this.getCart()
+        this.api.getCartCountApi()
       },
       error:(err:any)=>{
         console.log(err);
@@ -43,5 +46,59 @@ export class CartComponent implements OnInit {
       }
     })
   }
+
+  getTotalAmount(){
+    if(this.cartProducts.length>0){
+      this.totalAmount=this.cartProducts.map((item:any)=>item.totalPrice).reduce((p1:any,p2:any)=>p1+p2)
+      console.log(this.totalAmount);
+    }else{
+      this.totalAmount=0
+    }
+      
+  }
+
+  increase(id:any){
+    this.api.incQuantityItemApi(id).subscribe({
+      next:(res:any)=>{
+        console.log(res);
+        this.getCart()
+      },
+      error:(err)=>{
+        console.log(err);
+        
+      }
+    })
+  }
+  
+  decrease(id:any){
+    this.api.decQuantityItemApi(id).subscribe({
+      next:(res:any)=>{
+        console.log(res);
+        this.getCart()
+        this.api.getCartCountApi()
+      },
+      error:(err)=>{
+        console.log(err);
+        
+      }
+    })
+  }
+
+  emptyCart(){
+    this.api.emptycartApi().subscribe({
+      next:(res:any)=>{
+        console.log(res);
+        this.toastr.success("Cart is Empty!")
+        this.api.getCartCountApi()
+        this.getCart()
+        this.getTotalAmount()
+      },error:(err:any)=>{
+        this.toastr.error("Somthing went wrong!")
+        console.log(err);
+        
+      }
+    })
+  }
+
 
 }

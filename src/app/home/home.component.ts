@@ -54,8 +54,8 @@ export class HomeComponent implements OnInit {
 
   addCart(data:any){
     if(sessionStorage.getItem("Token")){
-      const {id,title,image,price}=data
-      const product={id,title,image,price,quantity:1}
+      const {id,title,image,category,price}=data
+      const product={id,title,image,price,category,quantity:1}
       this.api.addToCartApi(product).subscribe({
         next:(res:any)=>{
           console.log(res);
