@@ -1,3 +1,5 @@
+<app-header></app-header>
+
 <section class="py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="row gx-4 gx-lg-5 align-items-center">
@@ -10,16 +12,10 @@
                     <span>{{product.price | currency:'INR'}}</span>
                 </div>
                 <p class="lead pt-5">{{product.description}}</p>
-                <div class="d-flex mt-5" style="width: 61.6%;border: 1px solid rgb(255, 96, 44);">
-                    <button class="btn flex-shrink-0  btn-outline-dark border-0 text-uppercase" style="padding: 15px 50px ;" type="button">
-                        <i class="bi-cart-fill me-1"></i>
-                        Wishlist
-                    </button>
-                    <button class="btn flex-shrink-0 hover text-uppercase" style="padding: 15px 50px ;" type="button">
-                        <i class="bi-cart-fill me-1"></i>
-                        Add to cart
-                    </button>
-                </div>
+                <div class="btn-group mt-3" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-outline-dark ps-5 pe-5 p-3">Wishlist</button>
+                    <button type="button" class="btn hover ps-5 pe-5 p-3">add to cart</button>
+                  </div>
             </div>
         </div>
     </div>

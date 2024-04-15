@@ -1,3 +1,4 @@
+<app-header></app-header>
 
 <section class="h-100 h-custom ">
     <div class="container py-5 h-100">
@@ -48,18 +49,33 @@
                             <h5 class="mb-0 fw-bolder" style="font-size: 14px;">{{i?.totalPrice | currency:"INR"}}</h5>
                           </div>
                           <div class="col-md-1 col-sm-12 d-flex align-items-center justify-content-center">
-                          <p class="m-0"><i class="fa-solid fa-xmark pe-3" style="color: #000000;" (click)="deleteCartItem(i?._id)"></i></p>
+                          <p class="m-0"><i class="fa-solid fa-trash-arrow-up pe-3" style="color: #646464;font-size: 18px;" (click)="deleteCartItem(i?._id)"></i></p>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="text-end mb-3">
-                    <button class="btn btn-dark btn-outline-light" (click)="emptyCart()">Empty Cart</button>
+                    <button class="btn btn-dark btn-outline-light border-dark" (click)="emptyCart()">Empty Cart</button>
                   </div>
+                  
+                  <div class="card mb-4 mb-lg-0 bg-transparent">
+                    <div class="card-body">
+                      <p><strong>We accept</strong></p>
+                      
+                      <img class="me-3" width="85px" style="mix-blend-mode: multiply;"
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRXQ-EAw8y32fqBTYiLJn1ic7J10tipwuspYGeUo0q&s"
+                        alt="PayPal acceptance mark" />
+                      <img class="me-2" width="65px" style="mix-blend-mode: multiply;"
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkl8xxD9C1uxapqfAktRAfDckswHLTNkuhLeNtd432bvK0qivFH1BvaqJmhaHmiODa65s&usqp=CAU"
+                        alt="PayPal acceptance mark" />
+                    </div>
+                  </div>
+               
+
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-sm-12 col-lg-3 col-md-7">
                     <div class="card mb-4 bg-transparent">
                       <div class="card-header py-3">
                         <h5 class="mb-0">Summary</h5>
@@ -73,25 +89,87 @@
                           </li>
                           <li class="list-group-item d-flex justify-content-between align-items-center px-0 bg-transparent">
                             Shipping
-                            <span>Shophy</span>
+                            <span>Free</span>
                           </li>
-                          
+                          <li *ngIf="!cartCoupon"
+                            class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-1 pt-3 bg-transparent">
+                            Available Offers 
+                            <span style="cursor: pointer;color: #af8b16;" (click)="getCoupon()">Click here</span>
+                          </li>
                           <li
                             class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3 bg-transparent">
                             <div>
                               <strong>Total amount</strong>
                               <strong>
-                                <p class="mb-0">(including VAT)</p>
+                                <p class="mb-0">(including GST)</p>
                               </strong>
                             </div>
                             <span><strong>{{totalAmount | currency:'INR'}}</strong></span>
                           </li>
                         </ul>
                 
-                        <button type="button" class="btn btn-dark btn-lg btn-block w-100 btn-outline-light">
+                        <button type="button" class="btn btn-dark btn-lg btn-block w-100 btn-outline-light border-dark" (click)="ClickCheckout()">
                           Go to checkout
                         </button>
                       </div>
+                    </div>
+                    
+                    <div *ngIf="cartCoupon">
+                      <h5 class="pb-1 text-dark" *ngIf="!couponClickedStatus">Available Offers</h5>
+                      <ng-container *ngIf="totalAmount>10 && totalAmount<250 && !couponClickedStatus">
+                        <div class="card mb-3 w-100" style=" background-image: linear-gradient(#4E65FF   , #49bccead );">
+                          <div class="card-header">Available Coupons</div>
+                          <div class="card-body ">
+                            <div class="d-flex justify-content-between">
+                            <h5 class="card-title m-1 p-2 text-dark border" style="background-color:#d4af37dc;"><i class="fa-solid fa-ticket ps-2 " style="color: #000000;"></i><span class="ps-3 pe-2" style="font-size: 13px;"> NEWSPECIAL</span></h5>
+                            <button class="btn " (click)="getDiscound10()">Apply</button>
+                            </div>
+                            <p class="card-text pt-2 " style="font-size: 12px;">10% off entire order <i class="fa-solid fa-circle" style="font-size: 5px;"></i> Minimum purchase of ₹100.00</p>
+                            <hr>
+                          </div>
+                        </div>
+                      </ng-container>
+                      
+                      <ng-container *ngIf="totalAmount>250 && totalAmount<500 && !couponClickedStatus">
+                        <div class="card mb-3 w-100" style=" background-image: linear-gradient(#e93342    , #c9872c );">
+                          <div class="card-header ">Available Coupons</div>
+                          <div class="card-body ">
+                            <div class="d-flex justify-content-between">
+                            <h5 class="card-title m-1 p-2 text-dark border" style="background-color:#d4af37d2;"><i class="fa-solid fa-ticket ps-2 " style="color: #000000;"></i><span class="ps-3 pe-2" style="font-size: 13px;">SUMMERSPECIAL</span></h5>
+                            <button class="btn " (click)="getDiscound25()">Apply</button>
+                            </div>
+                            <p class="card-text pt-2 " style="font-size: 12px;">25% off entire order <i class="fa-solid fa-circle" style="font-size: 5px;"></i> Minimum purchase of ₹250.00</p>
+                            <hr>
+                          </div>
+                        </div>
+                      </ng-container>
+
+                      <ng-container *ngIf="totalAmount>500 && totalAmount<1000 && !couponClickedStatus">
+                        <div class="card mb-3 w-100" style=" background-image: linear-gradient(#11998E    , #38EF7D );">
+                          <div class="card-header ">Available Coupons</div>
+                          <div class="card-body ">
+                            <div class="d-flex justify-content-between">
+                            <h5 class="card-title m-1 p-2 text-dark border" style="background-color: #d4af37d2;"><i class="fa-solid fa-ticket ps-2 " style="color: #000000;"></i><span class="ps-3 pe-2" style="font-size: 13px;"> MINIMUMOFFER</span></h5>
+                            <button class="btn" (click)="getDiscound50()">Apply</button>
+                            </div>
+                            <p class="card-text pt-2 " style="font-size: 12px;">50% off entire order <i class="fa-solid fa-circle" style="font-size: 5px;"></i> Minimum purchase of ₹500.00</p>
+                            <hr>
+                          </div>
+                        </div>
+                      </ng-container>
+                      <ng-container *ngIf="totalAmount>1000 && !couponClickedStatus">
+                        <div class="card mb-3 w-100" style=" background-image: linear-gradient(#d4af37ee   , #d4af377c );">
+                          <div class="card-header ">Available Coupons</div>
+                          <div class="card-body ">
+                            <div class="d-flex justify-content-between">
+                            <h5 class="card-title m-1 p-2 text-dark" style="background-color:#d4af37;border: #d4af37;"><i class="fa-solid fa-ticket ps-2 " style="color: #000000;"></i><span class="ps-3 pe-2" style="font-size: 13px;"> GOLDENOFFER</span></h5>
+                            <button class="btn" (click)="getDiscound90()">Apply</button>
+                            </div>
+                            <p class="card-text pt-2 " style="font-size: 12px;">90% off entire order <i class="fa-solid fa-circle" style="font-size: 5px;"></i> Minimum purchase of ₹1000.00</p>
+                            <hr>
+                          </div>
+                        </div>
+                      </ng-container>
                     </div>
                   </div>
               </div>

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -12,7 +13,10 @@ export class CartComponent implements OnInit {
 
   cartProducts:any[]=[]
   totalAmount:any=0
-  constructor(private api:ApiService,private toastr:ToastrService){}
+  cartCoupon:any=false
+  couponClickedStatus:any=false
+
+  constructor(private api:ApiService,private toastr:ToastrService,private router:Router){}
 
   ngOnInit() {
     this.getCart()
@@ -26,8 +30,7 @@ export class CartComponent implements OnInit {
         
       },
       error:(err:any)=>{
-        // console.log(err);
-        this.toastr.error(err)
+        console.log(err + "please Login!!");
       }
     })
   }
@@ -49,7 +52,7 @@ export class CartComponent implements OnInit {
 
   getTotalAmount(){
     if(this.cartProducts.length>0){
-      this.totalAmount=this.cartProducts.map((item:any)=>item.totalPrice).reduce((p1:any,p2:any)=>p1+p2)
+      this.totalAmount=Math.ceil(this.cartProducts.map((item:any)=>item.totalPrice).reduce((p1:any,p2:any)=>p1+p2))   //ceil and floore --ceil increase integer and fill- floore oposite decrese
       console.log(this.totalAmount);
     }else{
       this.totalAmount=0
@@ -100,5 +103,32 @@ export class CartComponent implements OnInit {
     })
   }
 
+  getCoupon(){
+    this.cartCoupon=true
+  }
 
+  getDiscound10(){
+    this.couponClickedStatus=true
+    const discound=this.totalAmount * 0.1
+    this.totalAmount=Math.ceil(this.totalAmount-discound)
+  }
+  getDiscound25(){
+    this.couponClickedStatus=true
+    const discound=this.totalAmount * 0.25
+    this.totalAmount=Math.ceil(this.totalAmount-discound)
+  }
+  getDiscound50(){
+    this.couponClickedStatus=true
+    const discound=this.totalAmount * 0.5
+    this.totalAmount=Math.ceil(this.totalAmount-discound)
+  }
+  getDiscound90(){
+    this.couponClickedStatus=true
+    const discound=this.totalAmount * 0.9
+    this.totalAmount=Math.ceil(this.totalAmount-discound)
+  }
+  ClickCheckout(){
+    sessionStorage.setItem("totalAmount",this.totalAmount)
+    this.router.navigateByUrl('checkout')
+  }
 }

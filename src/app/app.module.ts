@@ -15,6 +15,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CheckOutComponent } from './check-out/check-out.component';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CartComponent,
     WhishlistComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    CheckOutComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +38,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    NgxPayPalModule
    
   ],
   providers: [],

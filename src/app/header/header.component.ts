@@ -21,7 +21,7 @@ ngOnInit(){
     this.username=JSON.parse(user).username
     this.api.wishListCount.subscribe((res:any)=>{
       this.wishCount=res
-    })
+    });
     this.api.cartListCount.subscribe((res:any)=>{
       this.cartCount=res
     })

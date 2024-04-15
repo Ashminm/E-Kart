@@ -24,6 +24,7 @@ export class WhishlistComponent implements OnInit {
         this.products=res
       },
       error:(err:any)=>{
+        // this.toster.error(err)
         console.log(err);
         
       }
@@ -33,7 +34,7 @@ export class WhishlistComponent implements OnInit {
   deleteItem(id:any){
     this.api.removeWishListItem(id).subscribe({
       next:(res:any)=>{
-        // console.log(res);
+        console.log(res);
         this.api.getWishlistCountApi()
         this.toster.success("Item Removed!")
         this.getData()
