@@ -47,7 +47,7 @@
                     Login
                   </ng-template>
                 </p>
-                <button class="btn m-2 p-3 ps-5 pe-5  rounded border-dark btn-outline-dark text-uppercase" title="LogOut" *ngIf="username">
+                <button (click)="logOut()" class="btn m-2 p-3 ps-5 pe-5  rounded border-dark btn-outline-dark text-uppercase" title="LogOut"  *ngIf="username">
                   LogOut
                 </button>
              <!-- ---------------more item--------------- -->

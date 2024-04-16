@@ -45,4 +45,26 @@ export class WhishlistComponent implements OnInit {
     })
   }
 
+  addCart(data:any){
+    if(sessionStorage.getItem("Token")){
+      const {id,title,image,category,price}=data
+      const product={id,title,image,price,category,quantity:1}
+      this.api.addToCartApi(product).subscribe({
+        next:(res:any)=>{
+          console.log(res);
+          this.api.getCartCountApi()
+          this.toster.success("Item added to cart")
+          this.deleteItem(data._id)
+        },
+        error:(err:any)=>{
+          this.toster.error(err.error)
+        }
+      })
+    }
+    else{
+      console.log("Login first");
+      this.toster.warning("Login first!!")
+    }
+  }
+
 }

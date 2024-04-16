@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -11,11 +13,9 @@ export class HeaderComponent implements OnInit{
   username:any=""
   wishCount:any=0;
   cartCount:any=0;
-  // count:any
-  constructor(private api:ApiService){}
+  constructor(private api:ApiService,private route:Router){}
 
 ngOnInit(){
-  // this.getCount()
   if(sessionStorage.getItem("existingUser")){
     const user:any=sessionStorage.getItem("existingUser")
     this.username=JSON.parse(user).username
@@ -28,9 +28,12 @@ ngOnInit(){
   }
 }
  
-// getCount(){
-//   this.api.getWishListApi().subscribe((res:any)=>{
-//     this.count=(res.length)
-//   })
-// }
+
+logOut(){
+  localStorage.clear()
+  sessionStorage.clear()
+  this.wishCount=0
+  this.cartCount=0
+this.route.navigateByUrl("/log")
+}
 }
