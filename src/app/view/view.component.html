@@ -7,14 +7,20 @@
             <div class="col-md-6">
                 <div class="small mb-1">ID:{{product.id}}</div>
                 <p class="fw-bolder display-6 text-uppercase">{{product.title}}</p>
-                <div class="fs-5 mb-5">
-                    <span class="text-decoration-line-through pe-2">{{product.price | currency:'INR'}}</span>
-                    <span>{{product.price | currency:'INR'}}</span>
+                <h4>Product details</h4>
+                <hr class="mt-0" style="width: 20%;">
+                <p class="h6">{{product.category}}</p>
+                <p>Rating: <span class="text-light bg-success rounded ps-2 pt-1 pe-2 pb-1">{{product.rating.rate}}</span></p>
+                <div class="fs-5 mb-4">
+                    <span class="text-decoration-line-through pe-2 text-danger">{{product.price | currency:'INR'}}</span>
+                    <span class="h2">{{product.price | currency:'INR'}}</span>
                 </div>
-                <p class="lead pt-5">{{product.description}}</p>
+                <h4>About this item</h4>
+                <hr  class="mt-0" style="width: 20%;">
+                <p class="lead">{{product.description}}</p>
                 <div class="btn-group mt-3" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-outline-dark ps-5 pe-5 p-3">Wishlist</button>
-                    <button type="button" class="btn hover ps-5 pe-5 p-3">add to cart</button>
+                    <button type="button" class="btn btn-outline-dark ps-5 pe-5 p-3" (click)="addWish(product)" >Wishlist</button>
+                    <button type="button" class="btn hover ps-5 pe-5 p-3" (click)="addCart(product)" >add to cart</button>
                   </div>
             </div>
         </div>

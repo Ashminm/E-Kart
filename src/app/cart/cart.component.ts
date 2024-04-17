@@ -127,6 +127,7 @@ export class CartComponent implements OnInit {
     const discound=this.totalAmount * 0.9
     this.totalAmount=Math.ceil(this.totalAmount-discound)
   }
+  
   ClickCheckout(){
     sessionStorage.setItem("totalAmount",this.totalAmount)
     this.router.navigateByUrl('checkout')

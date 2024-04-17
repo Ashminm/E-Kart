@@ -84,4 +84,8 @@ export class ApiService {
     return this.http.delete(`${this.SERVER_URL}/empty-cart`,this.appendTokenToHeader())    
   }
 
+  isLoggedIn(){
+    return !!sessionStorage.getItem("Token")
+  }
+
 }

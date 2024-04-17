@@ -45,10 +45,9 @@ export class HomeComponent implements OnInit {
         }
       }) 
     }
-    else{
-      
-      this.toaster.warning("Login First")
-      this.route.navigateByUrl('/log')
+    else{ 
+      this.toaster.warning("Please Login First!!")
+      // this.route.navigateByUrl('/log')
     }
   }
 
@@ -70,8 +69,8 @@ export class HomeComponent implements OnInit {
     }
     else{
       console.log("Login first");
-      this.toaster.warning("Login first!!")
-      this.route.navigateByUrl('/log')
+      this.toaster.warning("Please Login first!!")
+      // this.route.navigateByUrl('/log')
 
     }
   }
