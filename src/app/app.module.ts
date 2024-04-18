@@ -17,6 +17,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CheckOutComponent } from './check-out/check-out.component';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { SearchPipe } from './pipes/search.pipe';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { NgxPayPalModule } from 'ngx-paypal';
     WhishlistComponent,
     LoginComponent,
     RegistrationComponent,
-    CheckOutComponent
+    CheckOutComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ import { NgxPayPalModule } from 'ngx-paypal';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    NgxPayPalModule
+    NgxPayPalModule,
+    FormsModule
    
   ],
   providers: [],

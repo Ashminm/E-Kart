@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-header',
@@ -10,9 +14,12 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit{
 
+  @Output() sendSearchEvent = new EventEmitter<string>();
+
   username:any=""
   wishCount:any=0;
   cartCount:any=0;
+  searchText:any;
   constructor(private api:ApiService,private route:Router){}
 
 ngOnInit(){
@@ -36,4 +43,12 @@ logOut(){
   this.cartCount=0
 this.route.navigateByUrl("/log")
 }
+
+  searchEvent(){
+    this.sendSearchEvent.emit(this.searchText)
+    console.log(this.searchText);
+    
+  }
+
+
 }

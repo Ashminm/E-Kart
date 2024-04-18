@@ -5,9 +5,9 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <form class="d-flex rounded  m-0 justify-content-start mb-2 me-2" style="width: 82%;">
-            <input type="search" class="form-control  btn-outline-secondary p-3 " placeholder="Search for products and barands" style="background-color: rgba(197, 195, 195, 0.884);" />
-            <button type="button"class="btn  btn-outline-dark bg-secondary" ><i class="fa-solid fa-magnifying-glass"></i></button>
+        <form class="d-flex rounded  m-0 justify-content-start mb-2 me-2" style="width: 82%;" autocomplete="off">
+            <input type="search" class="form-control  btn-outline-secondary p-3 " name="searchText" (keyup)="searchEvent()"  [(ngModel)]="searchText"  placeholder="Search for products,barands and price" style="background-color: rgba(197, 195, 195, 0.884);color: black;" />
+            <!-- <button type="button"class="btn  btn-outline-dark bg-secondary" ><i class="fa-solid fa-magnifying-glass"></i></button> -->
         </form>
         <ul class="navbar-nav mb-2 mb-lg-0">
           <li class="nav-item mb-2">

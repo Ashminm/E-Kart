@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   products:any[]=[]
+  searchKey:any;
 
   constructor(private api:ApiService,private toaster:ToastrService,private route:Router){}
 
@@ -73,6 +74,11 @@ export class HomeComponent implements OnInit {
       // this.route.navigateByUrl('/log')
 
     }
+  }
+  getSearchItem(e:any){
+    this.searchKey=e
+    console.log(e);
+    
   }
 
 }
