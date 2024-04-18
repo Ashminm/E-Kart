@@ -46,8 +46,7 @@ this.route.navigateByUrl("/log")
 
   searchEvent(){
     this.sendSearchEvent.emit(this.searchText)
-    console.log(this.searchText);
-    
+    // console.log(this.searchText);
   }
 
 
