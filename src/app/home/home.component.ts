@@ -22,9 +22,9 @@ export class HomeComponent implements OnInit {
 
   getData(){
     this.api.getAllProducts().subscribe((res:any)=>{
-      // console.log(res);
+      console.log(res);
       this.products=res
-      
+     
     },(err)=>{
       console.log(err);
       

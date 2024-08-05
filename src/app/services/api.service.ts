@@ -7,7 +7,8 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ApiService {
 
-  SERVER_URL="https://e-kart-server.onrender.com"
+  SERVER_URL="https://e-kart-server-1.onrender.com"
+  // https://e-kart-server.onrender.com
   wishListCount=new BehaviorSubject(0)
   cartListCount=new BehaviorSubject(0)
 
@@ -17,6 +18,7 @@ export class ApiService {
       this.getCartCountApi()
     }
    }
+   
    
   getAllProducts(){
     return this.http.get(`${this.SERVER_URL}/all-products`)
@@ -34,6 +36,7 @@ export class ApiService {
 // --------------------------------------
   appendTokenToHeader(){
     const token=sessionStorage.getItem('Token')
+    console.log("Token:", token);
     let headers=new HttpHeaders()
     if(token){
       headers=headers.append("Authorization",`Bearer ${token}`)

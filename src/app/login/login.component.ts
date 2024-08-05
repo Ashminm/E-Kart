@@ -28,7 +28,7 @@ getFormdata(){
       this.route.navigateByUrl('/')
     },
     error:(err:any)=>{
-      this.toaster.error(err.error)
+      this.toaster.error(err.error,"Somthing went wrong:")
     }
   })
 }
