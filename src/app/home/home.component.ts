@@ -13,17 +13,19 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   products:any[]=[]
   searchKey:any;
-
+  isloading:boolean=true
   constructor(private api:ApiService,private toaster:ToastrService,private route:Router){}
 
   ngOnInit() {
     this.getData()
+    this.isloading=true
   }
 
   getData(){
     this.api.getAllProducts().subscribe((res:any)=>{
       console.log(res);
       this.products=res
+      this.isloading=false
      
     },(err)=>{
       console.log(err);

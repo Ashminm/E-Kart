@@ -57,6 +57,12 @@
 <section class="py-5">
   <div class="container px-4 px-lg-5 mt-5">
       <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-sm-1 row-cols-md-3 row-cols-xl-5 justify-content-center">
+        <div *ngIf="isloading">
+          <div class="d-flex align-items-end ">
+              <h3 class="m-0"><i class="fa-solid fa-circle-notch fa-spin-pulse fa-xl me-2"></i></h3>
+              <h3 class="m-0">Loading...</h3>
+          </div>
+        </div>
         <div class="col mb-5 me-1 d-flex justify-content-center" *ngFor="let i of products | search:searchKey" >
                 <div class="card h-100 border-0 bg-transparent rounded" style="width: 15.80rem;">
                     <div class="text-end p-3 pt-4" style="background-color: rgb(212, 213, 214);"  type="button"><span (click)="addWish(i)" style="border: 1px solid rgb(255, 96, 44);border-radius: 50%;padding: 12px 8px 9px 8px; "><i class="fa-solid fa-heart fa-xl"  style="color: rgb(255, 96, 44);"></i></span></div>

@@ -7,8 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ApiService {
 
-  SERVER_URL="https://e-kart-server.onrender.com"
-  // https://e-kart-server.onrender.com
+  SERVER_URL="https://e-kart-server.onrender.co"
   wishListCount=new BehaviorSubject(0)
   cartListCount=new BehaviorSubject(0)
 
