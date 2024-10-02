@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   products:any[]=[]
   searchKey:any;
   isloading:boolean=true
+  
   constructor(private api:ApiService,private toaster:ToastrService,private route:Router){}
 
   ngOnInit() {

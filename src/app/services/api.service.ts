@@ -17,8 +17,7 @@ export class ApiService {
       this.getCartCountApi()
     }
    }
-   
-   
+      
   getAllProducts(){
     return this.http.get(`${this.SERVER_URL}/all-products`)
   }
